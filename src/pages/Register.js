@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from 'axios';
@@ -12,7 +12,8 @@ export const Register = () => {
         password:""
     });
     const [ repeatPassword, setRepeatPassword ] = useState("");
-    const [userDetailsSuccess, setUserDetailsSuccess] = useState({
+
+    const userDetailsSuccess = useRef({
         name:false,
         email:false,
         password:false,
@@ -64,7 +65,7 @@ export const Register = () => {
                     "password should contain atleast 1 lower case alphabet",
                     "password should contain atleast 1 upper case alphabet",
                     "password should contain atleast 1 numeric digit",
-                    "password should contain atleast 1 special letter"
+                    "password should contain atleast 1 special letter",
                 ]
         
         for(let i=0;i<array.length;i++)
@@ -81,7 +82,7 @@ export const Register = () => {
             {
                 const parent = eventTarget.closest('div');
                 const smallElem = document.createElement('small');
-                smallElem.classList.add("dark:text-slate-400","block")
+                smallElem.classList.add("dark:text-slate-400","block");
                 smallElem.id = i;
                 smallElem.innerText = msg[i]; 
                 parent.appendChild(smallElem);
@@ -91,12 +92,8 @@ export const Register = () => {
                 count++;
             }
         }
-        
-        count === 5 ? (
-            setUserDetailsSuccess({ ...userDetailsSuccess, [eventTarget.name]:true })
-        ) : (
-            setUserDetailsSuccess({ ...userDetailsSuccess, [eventTarget.name]:false })
-        )
+
+        count === 5 ? userDetailsSuccess.current[eventTarget.name] = true : userDetailsSuccess.current[eventTarget.name] = false
     }
 
     const CheckRepeatPassword = (eventTarget) => {
@@ -109,8 +106,7 @@ export const Register = () => {
         const small = parent.querySelector('small');
         small.classList.remove("hidden");
         small.innerText = msg;
-        setUserDetailsSuccess({ ...userDetailsSuccess, [eventTarget.name]:false });
-        
+        userDetailsSuccess.current[eventTarget.name] = false;
     }
 
     const showSuccess = (eventTarget) => {
@@ -118,8 +114,7 @@ export const Register = () => {
         const small = parent.querySelector('small');
         small.classList.add("hidden");
         small.innerText = '';
-        setUserDetailsSuccess({ ...userDetailsSuccess, [eventTarget.name]:true });
-        
+        userDetailsSuccess.current[eventTarget.name] = true;
     }
 
     const handleRegister = async (e) => {
@@ -143,7 +138,7 @@ export const Register = () => {
                 if(status===201)
                 {
                     toast.success(message);
-                    navigate('/login');
+                    navigate('/login',{replace:true});
                 } 
                 setUser({
                     name:"",
@@ -163,17 +158,7 @@ export const Register = () => {
         }
     }
 
-    useEffect(() => {
-        const { name, email, password, repeatPassword } = userDetailsSuccess;
-        if(name && email && password && repeatPassword)
-        {
-            success.current = true
-        }
-        else{
-            success.current = false;
-        }
-        console.log(success.current);
-    });
+    success.current = Object.values(userDetailsSuccess.current).every(value => value===true);
 
   return (
     <main className="min-h-[70vh] bg-white dark:bg-gray-800 px-5" >
@@ -192,11 +177,11 @@ export const Register = () => {
                     </div>
                     <div className="mb-6">
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                        <input onChange={handleChange} name="password" value={user.password} type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
+                        <input onChange={handleChange} autoComplete="" name="password" value={user.password} type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
                     </div>
                     <div className="mb-6">
                         <label htmlFor="repeatPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat password</label>
-                        <input onChange={(e)=>{setRepeatPassword(e.target.value);CheckRepeatPassword(e.target);}} name="repeatPassword" value={repeatPassword} type="password" id="repeatPassword" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
+                        <input onChange={(e)=>{setRepeatPassword(e.target.value);CheckRepeatPassword(e.target);}} autoComplete="" name="repeatPassword" value={repeatPassword} type="password" id="repeatPassword" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
                         <small className="dark:text-slate-400 hidden"></small>
                     </div>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
