@@ -7,7 +7,7 @@ export const FeaturedProducts = () => {
 
   useEffect( () => {
     const getFeaturedProducts = async () => {
-      const res = await fetch("http://localhost:9090/features");
+      const res = await fetch("https://u-kart-backend-node.onrender.com/features");
       const result = await res.json();
       setFeaturedProducts(result.DATA);
     };

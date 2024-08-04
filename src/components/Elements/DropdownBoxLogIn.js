@@ -11,7 +11,7 @@ export const DropdownBoxLogIn = ({setShowDropdown}) => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userEmail");
     axios({
-      baseURL: "http://localhost:9090",
+      baseURL: "https://u-kart-backend-node.onrender.com",
       url: "/logout",
       method: "GET",
       withCredentials: 'include'

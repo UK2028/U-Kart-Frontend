@@ -32,7 +32,7 @@ export const CartList = () => {
         try {
 
             const axiosOptions = {
-                baseURL: "http://localhost:9090",
+                baseURL: "https://u-kart-backend-node.onrender.com",
                 url: "/order",
                 method: "POST",
                 data: {
@@ -68,7 +68,7 @@ export const CartList = () => {
 
                         const verifyAxiosOptions = {
                             method: "POST",
-                            baseURL: "http://localhost:9090",
+                            baseURL: "https://u-kart-backend-node.onrender.com",
                             url: "/verify_payment",
                             data: {
                                 orderId: response.razorpay_order_id,

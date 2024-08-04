@@ -28,7 +28,7 @@ export const Login = () => {
 
     if (profile.password === repeatPassword) {
       const requestOptions = {
-        baseURL: "http://localhost:9090",
+        baseURL: "https://u-kart-backend-node.onrender.com",
         url: "/login",
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ export const Login = () => {
 
   const handleLoginGuest = async (e) => {
     const requestOptions = {
-        baseURL: "http://localhost:9090",
+        baseURL: "https://u-kart-backend-node.onrender.com",
         url: "/login",
         method: "POST",
         headers: {

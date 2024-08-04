@@ -124,7 +124,7 @@ export const Register = () => {
             if(success.current === true)
             {
                 const requestOptions = {
-                    baseURL: "http://localhost:9090",
+                    baseURL: "https://u-kart-backend-node.onrender.com",
                     url: "/register",
                     method: 'POST',
                     headers: {

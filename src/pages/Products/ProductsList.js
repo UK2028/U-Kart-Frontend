@@ -26,7 +26,7 @@ export const ProductsList = () => {
 
   useEffect( () => {
     const fetchProducts = async () => {
-      const res = await fetch(`http://localhost:9090/products?name=${searchTerm}`,{method:"GET"});
+      const res = await fetch(`https://u-kart-backend-node.onrender.com/products?name=${searchTerm}`,{method:"GET"});
       const result = await res.json();
       // dispatchRef.current.dispatch({type:"INITIALISE_LIST", payload: {
         // products: result.DATA

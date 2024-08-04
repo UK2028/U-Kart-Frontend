@@ -39,7 +39,7 @@ export const UserProvider = ({children}) => {
         {
             const reqOpt = {
                 method: "POST",
-                baseURL: 'http://localhost:9090',
+                baseURL: 'https://u-kart-backend-node.onrender.com',
                 url: '/add_to_cart',
                 data: {
                     product
@@ -75,7 +75,7 @@ export const UserProvider = ({children}) => {
                 
                 const reqOpt = {
                     method: "POST",
-                    baseURL: 'http://localhost:9090',
+                    baseURL: 'https://u-kart-backend-node.onrender.com',
                     url: '/add_to_cart',
                     data: {
                         product
@@ -109,7 +109,7 @@ export const UserProvider = ({children}) => {
         {
             const reqOpt = {
                 method: "POST",
-                baseURL: 'http://localhost:9090',
+                baseURL: 'https://u-kart-backend-node.onrender.com',
                 url: '/remove_from_cart',
                 data: {
                     product
@@ -143,7 +143,7 @@ export const UserProvider = ({children}) => {
                 
                 const reqOpt = {
                     method: "POST",
-                    baseURL: 'http://localhost:9090',
+                    baseURL: 'https://u-kart-backend-node.onrender.com',
                     url: '/remove_from_cart',
                     data: {
                         product
@@ -177,7 +177,7 @@ export const UserProvider = ({children}) => {
             
             const reqOpt = {
                 method: "POST",
-                baseURL: 'http://localhost:9090',
+                baseURL: 'https://u-kart-backend-node.onrender.com',
                 url: '/order_list',
                 data: {
                     userId: state._id,

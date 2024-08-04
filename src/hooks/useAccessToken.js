@@ -5,7 +5,7 @@ import { useUser } from "../context";
 import { useRefreshtoken } from './useRefreshtoken';
 
 const accessAxios = axios.create({
-    baseURL: "http://localhost:9090",
+    baseURL: "https://u-kart-backend-node.onrender.com",
     url: "/auth",
     method: "GET",
     headers: { 'Content-Type': 'application/json' },

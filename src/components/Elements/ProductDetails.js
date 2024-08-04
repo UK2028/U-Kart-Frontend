@@ -19,7 +19,7 @@ export const ProductDetails = () => {
 
     useEffect(() => {
         const fetchProductDetail = async () => {
-            const res = await fetch(`http://localhost:9090/products/${id}`);
+            const res = await fetch(`https://u-kart-backend-node.onrender.com/products/${id}`);
             const result = await res.json();
             setProductDetail(result.DATA);
         };

@@ -61,7 +61,7 @@ export const FilterBar = ({setShow}) => {
 
 //   useEffect( () => {
 //     const getProductsByFilter = async () => {
-//       const res = await fetch('http://localhost:9090/products/filter',{
+//       const res = await fetch('https://u-kart-backend-node.onrender.com/products/filter',{
 //         method: 'POST',
 //         headers: {"Content-Type":"application/json"},
 //         body: JSON.stringify(filterObject)
