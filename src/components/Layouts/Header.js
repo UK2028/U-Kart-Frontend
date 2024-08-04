@@ -13,7 +13,7 @@ export const Header = () => {
 
   const [ showSearch , setShowSearch ] = useState(false);
   const [ showDropdown, setShowDropdown  ] = useState(false);
-  const [ darkMode, setDarkMode ] = useState(JSON.parse(localStorage.getItem("darkTheme")) || false);
+  const [ darkMode, setDarkMode ] = useState(JSON.parse(localStorage.getItem("darkTheme")) || true);
   
   const userId = JSON.parse(localStorage.getItem("userId"));
 
