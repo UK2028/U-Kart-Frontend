@@ -17,12 +17,12 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <ProductsListProvider>
         <UserProvider>
+      <ProductsListProvider>
             <ToastContainer autoClose={3000} />
             <App />
-        </UserProvider>
       </ProductsListProvider>
+        </UserProvider>
     </BrowserRouter>
   // </React.StrictMode>
 );

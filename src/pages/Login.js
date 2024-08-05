@@ -53,14 +53,12 @@ export const Login = () => {
           setToken(data.accessToken);
         }
       } catch (error) {
-        console.log("inside catch",error)
         toast.error(error.response.data.message);
       } finally {
         setProfile({ email: "", password: "" });
         setRepeatPassword("");
       }
     } else {
-      console.log("inside else");
       toast.error("Password does not match");
     }
   };
@@ -83,7 +81,7 @@ export const Login = () => {
       const response = await axios(requestOptions);
 
         const { data, status } = response;
-
+        
         if (status === 200) {
           toast.success(data.message);
           navigate("/");

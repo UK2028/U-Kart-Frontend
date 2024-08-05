@@ -6,7 +6,7 @@ export const UserReducer = ( state, action ) => {
     switch(type)
     {
         case "SET_USER":
-            return { ...state, email: payload.user.email, name: payload.user.name, _id: payload.user._id, cartList: payload.cartList, total: payload.total, orders: payload.orders  };
+            return { ...state, email: payload.user.email, name: payload.user.name, _id: payload.user._id, cartList: payload.cartList, total: payload.total, orders: payload.orders, accessToken: payload.token };
 
         case "SET_ACCESS_TOKEN":
             return { ...state, accessToken: payload.token };
